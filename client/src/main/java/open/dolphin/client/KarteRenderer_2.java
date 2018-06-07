@@ -163,7 +163,7 @@ public class KarteRenderer_2 {
             //--------------------------------------------------------
         }
         
-        Collections.sort(pModules);
+        Collections.sort(pModules);//これがなー
         
         if (soaSpec != null && pSpec != null) {
             
@@ -446,7 +446,7 @@ public class KarteRenderer_2 {
         }
         
         // テキストを挿入する
-        thePane.insertFreeString(text, atts);
+        thePane.insertFreeString(text, atts);//ここで最終的にペーンに書き込む
     }
     
     private void endContent() {

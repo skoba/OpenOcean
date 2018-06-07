@@ -7,17 +7,18 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>opendolphin</artifactId>
-        <groupId>opendolphin</groupId>
-        <version>2.7.2</version>
+        <artifactId>openocean</artifactId>
+        <groupId>openocean</groupId>
+        <version>0.0.1</version>
     </parent>
-    <artifactId>opendolphin-client</artifactId>
+    <artifactId>openocean-client</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>opendolphin</groupId>
-            <artifactId>opendolphin-common</artifactId>
+            <groupId>openocean</groupId>
+            <artifactId>openocean-common</artifactId>
+            <!--<version>0.0.1</version>-->
         </dependency>
         <dependency>
             <groupId>javax.persistence</groupId>
@@ -35,9 +36,9 @@
             <version>1.1.3</version>
         </dependency>
         <dependency>
-            <groupId>postgresql</groupId>
+            <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>8.4-702.jdbc4</version>
+            <version>9.4.1212</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
@@ -137,7 +138,7 @@
     </dependencies>
 
     <build>
-        <finalName>OpenDolphin</finalName>
+        <finalName>OpenOcean</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -175,7 +176,7 @@
                 <version>3.3</version>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
-                    <debug>false</debug>
+                    <debug>true</debug>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
@@ -225,5 +226,5 @@
             </resource>
         </resources>
     </build>
-    <version>2.7.2</version>
+    <version>0.0.1</version>
 </project>

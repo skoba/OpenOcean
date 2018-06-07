@@ -35,6 +35,16 @@ import open.dolphin.plugin.PluginLoader;
 import open.dolphin.project.Project;
 import open.dolphin.util.BeanUtils;
 import open.dolphin.util.ZenkakuUtils;
+import java.text.SimpleDateFormat;//以下追加
+import java.io.Writer;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import javax.swing.text.Segment;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.PrintWriter;
+//import open.dolphin.hiro.*;
+
 
 /**
  * 2号カルテクラス。
@@ -905,6 +915,8 @@ public class KarteEditor extends AbstractChartDocument implements IInfoModel, NC
             sd.setValue(params);
             sd.start();                          // showDaialog
             params = sd.getValue();
+            
+            
 
             // 印刷枚数を保存する
             if (params != null) {
@@ -1612,6 +1624,7 @@ public class KarteEditor extends AbstractChartDocument implements IInfoModel, NC
         //-----------------------------------------------
         // 保存と送信タスク
         //-----------------------------------------------
+
         SaveAdnSender saveSender = new SaveAdnSender(getContext(),params,soa,soaText,schemas,attachments,plan,pText,ef);
         saveSender.doTask();
     }
@@ -1707,6 +1720,7 @@ public class KarteEditor extends AbstractChartDocument implements IInfoModel, NC
         public void doTask() {
             
             DBTask dbTask = new DBTask<Void, Void>(chart) {
+                
 
                 @Override
                 protected Void doInBackground() throws Exception {
@@ -2060,6 +2074,83 @@ public class KarteEditor extends AbstractChartDocument implements IInfoModel, NC
                         }
                     }
                     ddl.putKarte(model);
+
+                    //inomata 当方環境、通信不具合ままある。送信前に問答無用でバックアップを取る。
+                    String userhome = System.getProperty("user.home");
+                    File file = new File(userhome + "\\OpenDolphin" + "\\Backup");
+                        if (file.exists()==false) {
+                            file.mkdir();
+                        }
+                    File subfile = new File(file +"\\"+ getContext().getPatient().getPatientId());
+                        if (subfile.exists()==false) {
+                            subfile.mkdir();
+                        }
+                    String firstdate =  new SimpleDateFormat("yyyy-MM-dd-HH-mm").format( model.getDocInfoModel().getFirstConfirmDate());
+                    String recdate = new SimpleDateFormat("yyyy-MM-dd-HH-mm").format( model.getDocInfoModel().getConfirmDate());                        
+                    File backup = new File(subfile.toString() +"\\"+ firstdate + ".txt");
+                        if (backup.exists()==false) {
+                            try{
+                               backup.createNewFile();
+                            }catch(IOException e){
+                                e.printStackTrace();
+                            }
+                        }
+                    KarteStyledDocument soadoc = (KarteStyledDocument)soaPane.getTextPane().getDocument();
+                    int nleft = soadoc.getLength();
+                    Segment stext = new Segment();
+                    int offs = 0;
+                    stext.setPartialReturn(true);
+                    StringBuilder sb = new StringBuilder();
+                    String Separator=System.getProperty("line.separator");
+                    sb.append("<SOA>"+ Separator);                    
+                    while (nleft > 0) {
+                       soadoc.getText(offs, nleft, stext);
+                       sb.append(stext.toString()); sb.append(Separator);
+                       nleft -= stext.count;
+                       offs += stext.count;
+                    }
+                    sb.append(Separator+"<P>"+Separator);
+                    List<ModuleModel> listMp = model.getModules();
+                    for(ModuleModel mpmodel:listMp){
+                       if(mpmodel.getModuleInfoBean().getEntity().equals("baseChargeOrder")){
+                            BundleDolphin bundleD = (BundleDolphin)mpmodel.getModel();
+                            sb.append( bundleD.getOrderName()+"("+ mpmodel.getModuleInfoBean().getStampName() +")"+Separator
+                                    +bundleD.getItemNames()+Separator+Separator);
+                        }else if(mpmodel.getModuleInfoBean().getEntity().equals("medOrder")){
+                            BundleMed bundleM = (BundleMed)mpmodel.getModel();
+                            sb.append( bundleM.toString()+Separator+Separator);                      
+                        }else if(mpmodel.getModuleInfoBean().getEntity().equals("testOrder")){
+                            BundleDolphin bundleD = (BundleDolphin)mpmodel.getModel();
+                            sb.append(bundleD.getOrderName()+"("+mpmodel.getModuleInfoBean().getStampName()+")"+Separator
+                                    +bundleD.getItemNames()+Separator+Separator);
+                        }else if(mpmodel.getModuleInfoBean().getEntity().equals("generalOrder")){
+                            BundleDolphin bundleD = (BundleDolphin)mpmodel.getModel();
+                            sb.append(bundleD.getOrderName()+"("+mpmodel.getModuleInfoBean().getStampName()+")"+Separator
+                                    +bundleD.getItemNames()+Separator+Separator);
+                        }else if(mpmodel.getModuleInfoBean().getEntity().equals("otherOrder")){
+                            BundleDolphin bundleD = (BundleDolphin)mpmodel.getModel();
+                            sb.append(bundleD.getOrderName()+"("+mpmodel.getModuleInfoBean().getStampName()+")"+Separator
+                                    +bundleD.getItemNames()+Separator+Separator);
+                        }else{
+                            //他不明
+                        }                                                
+                    }
+                    sb.append("-- record: "+ recdate+"--");
+                    try {
+                        FileOutputStream fos = new FileOutputStream(backup);
+                        OutputStreamWriter osw = new OutputStreamWriter(fos,"UTF-8");
+                        osw.write(sb.toString());
+                        osw.close();
+                        fos.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }                     
+                   //inomata さらに処方せん発行
+//                    open.dolphin.hiro.PrescriptionMaker pmaker = new open.dolphin.hiro.PrescriptionMaker();
+//                    pmaker.setChart(chart);
+//                    pmaker.setDocumentModel(model);
+//                    pmaker.start();
+                    
                     //masuda$                   
                     //----------------------------------------------
                     // Send
@@ -2067,7 +2158,8 @@ public class KarteEditor extends AbstractChartDocument implements IInfoModel, NC
                     senderList.stream().forEach((sender) -> {
                         sender.send(model);
                     });
-                    
+          
+
                     return null;
                 }
                 
@@ -2092,6 +2184,9 @@ public class KarteEditor extends AbstractChartDocument implements IInfoModel, NC
 //                        pvt.setStateBit(PatientVisitModel.BIT_UNFINISHED, empty);
 //                    }
 ////masuda$
+
+                    
+
                     // 印刷
                     int copies = params.getPrintCount();
                     if (copies > 0) {

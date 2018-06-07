@@ -477,7 +477,8 @@ public class EHTResource extends open.dolphin.rest.AbstractResource {
     }
     
     @GET
-    @Path("/diagnosis/{param}")
+    //@Path("/diagnosis/{param}")
+    @Path("/diagnosis/sync/{param}")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
     public StreamingOutput getDiagnosis(final @PathParam("param") String param) {
         
@@ -1044,6 +1045,9 @@ public class EHTResource extends open.dolphin.rest.AbstractResource {
             public void write(OutputStream os) throws IOException, WebApplicationException {
                 long pk = Long.parseLong(param);
                 String json = getTreeJson(pk);
+//                System.out.println(json);//テスト
+//                ObjectMapper mapper = getSerializeMapper();
+//                mapper.writeValue(os, json.getBytes());
                 os.write(json.getBytes());
             }
         };

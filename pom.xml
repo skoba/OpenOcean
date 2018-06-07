@@ -6,11 +6,11 @@
                         http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>opendolphin</groupId>
-  <artifactId>opendolphin</artifactId>
-  <version>2.7.2</version>
+  <groupId>openocean</groupId>
+  <artifactId>openocean</artifactId>
+  <version>0.0.1</version>
   <packaging>pom</packaging>
-  <name>OpenDolphin</name>
+  <name>OpenOcean</name>
 
   <modules>
     <module>common</module>
@@ -25,20 +25,20 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>opendolphin</groupId>
-        <artifactId>opendolphin-common</artifactId>
+        <groupId>openocean</groupId>
+        <artifactId>openocean-common</artifactId>
         <version>${project.version}</version>
         <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>opendolphin</groupId>
-        <artifactId>opendolphin-client</artifactId>
+        <groupId>openocean</groupId>
+        <artifactId>openocean-client</artifactId>
         <version>${project.version}</version>
         <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>opendolphin</groupId>
-        <artifactId>opendolphin-server</artifactId>
+        <groupId>openocean</groupId>
+        <artifactId>openocean-server</artifactId>
         <version>${project.version}</version>
         <type>war</type>
       </dependency>

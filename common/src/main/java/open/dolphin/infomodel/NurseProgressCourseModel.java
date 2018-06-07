@@ -5,6 +5,7 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import org.hibernate.annotations.Type;
 
+
 /**
  * 看護記録モデル
  * 
@@ -15,7 +16,7 @@ import org.hibernate.annotations.Type;
 public class NurseProgressCourseModel extends KarteEntryBean implements java.io.Serializable {
     
     @Lob
-    @Type(type="org.hibernate.type.StringClobType")
+    @Type(type="org.hibernate.type.StringType")
     private String progressText;
     
     // 看護記録の文字数

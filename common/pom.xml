@@ -7,18 +7,18 @@
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <artifactId>opendolphin</artifactId>
-    <groupId>opendolphin</groupId>
-    <version>2.7.2</version>
+    <artifactId>openocean</artifactId>
+    <groupId>openocean</groupId>
+    <version>0.0.1</version>
   </parent>
-  <artifactId>opendolphin-common</artifactId>
+  <artifactId>openocean-common</artifactId>
   <packaging>jar</packaging>
 
   <dependencies>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>4.3.8.Final</version>
+      <version>5.3.1.Final</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -41,7 +41,7 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
-    <version>2.7.2</version>
+    <version>0.0.1</version>
     <build>
         <plugins>
             <plugin>

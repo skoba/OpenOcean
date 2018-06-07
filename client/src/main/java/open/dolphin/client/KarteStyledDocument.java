@@ -11,7 +11,7 @@ import open.dolphin.project.Project;
  *
  * @author  Kazushi Minagawa, Digital Globe, Inc.
  */
-public class KarteStyledDocument extends DefaultStyledDocument {
+public class KarteStyledDocument extends DefaultStyledDocument {//ここでカスタマイズ
     
     // stampHolder Style
     private final String STAMP_STYLE = "stampHolder";

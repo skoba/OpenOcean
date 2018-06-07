@@ -18,6 +18,7 @@ import javax.swing.event.PopupMenuListener;
 import open.dolphin.helper.WindowSupport;
 import open.dolphin.infomodel.*;
 import open.dolphin.project.Project;
+import open.dolphin.hiro.*;
 
 /**
  * EditorFrame
@@ -358,6 +359,7 @@ public class EditorFrame extends AbstractMainTool implements Chart {
         // このクラス固有のToolBarを生成する
         JToolBar toolBar = appMenu.getToolBar();
         toolBar.addSeparator();
+        //toolBar.addSeparator();
         
         // テキストツールを生成する
         Action action = mediator.getActions().get(GUIConst.ACTION_INSERT_TEXT);
@@ -761,6 +763,11 @@ public class EditorFrame extends AbstractMainTool implements Chart {
         
         final DocumentModel theModel = editModel;
         
+//        final PrescriptionMaker pmaker = new PrescriptionMaker();
+//        final JFrame test = new JFrame();
+//        Container c = test.getContentPane();
+//        //c.add(pmaker);
+        
         Runnable r = () -> {
             editor = chart.createEditor();
             editor.setModel(theModel);
@@ -768,9 +775,13 @@ public class EditorFrame extends AbstractMainTool implements Chart {
             editor.setContext(EditorFrame.this);
             editor.setMode(KarteEditor.DOUBLE_MODE);
             
+//            pmaker.setChart(realChart);//test
+//            pmaker.setDocumentModel(theModel);//test
+            
             Runnable awt = () -> {
                 editor.initialize();
                 editor.start();
+//                pmaker.start();//test
                 replaceView();
             };
             
@@ -847,6 +858,9 @@ public class EditorFrame extends AbstractMainTool implements Chart {
             String docType = editModel.getDocInfoModel().getDocType();
             int mode1 = docType.equals(IInfoModel.DOCTYPE_KARTE) ? KarteEditor.DOUBLE_MODE : KarteEditor.SINGLE_MODE;
             editor.setMode(mode1);
+            
+            
+            
             Runnable awt = () -> {
                 editor.initialize();
                 editor.start();

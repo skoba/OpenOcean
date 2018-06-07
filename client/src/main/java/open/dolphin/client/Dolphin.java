@@ -162,6 +162,10 @@ public class Dolphin implements MainWindow {
         // Project作成後、Look&Feel を設定する
         stub.setupUI();
 
+//        //test
+//        startServices();
+//        loadStampTree();        
+//        
         //------------------------------
         // ログインダイアログを表示する
         //------------------------------
@@ -171,7 +175,7 @@ public class Dolphin implements MainWindow {
         login.addPropertyChangeListener(LoginDialog.LOGIN_PROP, (PropertyChangeEvent e) -> {
             LoginDialog.LoginStatus result = (LoginDialog.LoginStatus) e.getNewValue();
             login.close();
-            
+                        
             switch (result) {
                 case AUTHENTICATED:
                     startServices();
@@ -330,6 +334,7 @@ public class Dolphin implements MainWindow {
             @Override
             protected void succeeded(final List<IStampTreeModel> result) {
                 initComponents(result);
+                System.out.println("initComponent");//test
             }
 
             @Override
@@ -478,6 +483,7 @@ public class Dolphin implements MainWindow {
         int index = 0;
         for (MainComponent plugin : list) {
 
+            System.out.println(plugin.toString());//test
             if (index == 0) {
                 plugin.setContext(this);
                 plugin.start();
@@ -718,10 +724,12 @@ public class Dolphin implements MainWindow {
         chart.setContext(this);
         chart.setPatientVisit(pvt);
         chart.setReadOnly(readOnly);    // RedaOnlyProp
-        chart.start();
+        chart.start();//
         // publish state
         scl.publishKarteOpened(pvt);
-//masuda$         
+//masuda$
+        
+
     }
 
     /**

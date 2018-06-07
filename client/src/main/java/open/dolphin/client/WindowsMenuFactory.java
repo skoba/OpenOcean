@@ -92,7 +92,7 @@ public class WindowsMenuFactory extends AbstractMenuFactory {
         AbstractAction openKarte = new AbstractAction(text) {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                main.sendToChain("openKarte");
+                main.sendToChain("openKarte");//main は上で定義されているが、型 Menusuppot 
             }
         };
         map.put("openKarte", openKarte);
@@ -1065,11 +1065,11 @@ public class WindowsMenuFactory extends AbstractMenuFactory {
         // 処方箋印刷 createPrescription
         //-------------------
 //s.oh^ 不要機能の削除
-        //JMenuItem createPrescription = new JMenuItem();
-        //createPrescription.setName("createPrescription");
-        //createPrescription.setAction(actionMap.get("createPrescription"));
-        ////setAccelerator(createPrescription, KeyEvent.VK_M);
-        //karte.add(createPrescription);
+        JMenuItem createPrescription = new JMenuItem();
+        createPrescription.setName("createPrescription");
+        createPrescription.setAction(actionMap.get("createPrescription"));
+        setAccelerator(createPrescription, KeyEvent.VK_M);
+        karte.add(createPrescription);
 //s.oh$
         //-------------------
         // 併用禁忌チェック checkInteraction

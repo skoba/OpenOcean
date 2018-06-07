@@ -40,6 +40,7 @@ public class SqlDaoBean extends DaoBean {
     protected static final String ORCA_DB_VER45 = "040500-1";
     protected static final String ORCA_DB_VER46 = "040600-1";
     protected static final String ORCA_DB_VER47 = "040700-1";
+    protected static final String ORCA_DB_VER48 = "040800-1";//追加
     
     private static int hospNum;
     private static String dbVersion;

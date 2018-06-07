@@ -35,6 +35,7 @@ import open.dolphin.table.ListTableSorter;
 import open.dolphin.table.StripeTableCellRenderer;
 import open.dolphin.util.AgeCalculater;
 import open.dolphin.util.StringTool;
+import open.dolphin.hiro.*;
 
 /**
  * 患者検索PatientSearchPlugin
@@ -580,7 +581,8 @@ public class PatientSearchImpl extends AbstractMainComponent implements Property
                 ListTableModel<PatientModel> tableModel = getTableModel();
                 PatientModel value = (PatientModel) tableModel.getObject(table.getSelectedRow());
                 if (value != null) {
-                    openKarte();
+                    openKarte();//ここで
+                    
                 }
             }
         }

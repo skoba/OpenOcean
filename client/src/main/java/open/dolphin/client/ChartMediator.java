@@ -263,6 +263,7 @@ public final class ChartMediator extends MenuSupport implements UndoableEditList
             KarteEditor editor = (KarteEditor) getChain();
             kartePane = editor.getSOAPane();
             enabled = (kartePane.getTextPane().isEditable());
+            //enabled = false;//test
         }
         
         // サブメニューを制御する

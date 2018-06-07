@@ -7,25 +7,25 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>opendolphin</artifactId>
-        <groupId>opendolphin</groupId>
-        <version>2.7.2</version>
+        <artifactId>openocean</artifactId>
+        <groupId>openocean</groupId>
+        <version>0.0.1</version>
     </parent>
-    <artifactId>opendolphin-server</artifactId>
+    <artifactId>openocean-server</artifactId>
     <packaging>war</packaging>
     
-    <repositories>
+    <!--<repositories>
         <repository>
             <id>jboss</id>
             <name>JBoss Repository</name>
             <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
         </repository>
-    </repositories>  
+    </repositories>-->  
 
     <dependencies>
         <dependency>
-            <groupId>opendolphin</groupId>
-            <artifactId>opendolphin-common</artifactId>
+            <groupId>openocean</groupId>
+            <artifactId>openocean-common</artifactId>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
@@ -89,9 +89,9 @@
         </dependency>
         -->
         <dependency>
-            <groupId>postgresql</groupId>
+            <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.2-1002.jdbc4</version>
+            <version>9.4.1208</version>
         </dependency>
          <dependency>
             <groupId>com.plivo</groupId>
@@ -109,7 +109,7 @@
             <version>1.5</version>
         </dependency -->
     </dependencies>
-    <version>2.7.2</version>
+    <version>0.0.1</version>
     <build>
         <plugins>
             <plugin>
