@@ -2075,9 +2075,14 @@ public class KarteEditor extends AbstractChartDocument implements IInfoModel, NC
                     }
                     ddl.putKarte(model);
 
-                    //inomata 当方環境、通信不具合ままある。送信前に問答無用でバックアップを取る。
+                    //inomata 当方環境、通信不具合ままある。送信前に問答無用でバックアップを取る。 さらに modify by air
                     String userhome = System.getProperty("user.home");
-                    File file = new File(userhome + "\\OpenDolphin" + "\\Backup");
+                    
+                    File dir = new File(userhome + "\\OpenOcean");
+                        if (dir.exists()==false) {
+                            dir.mkdir();
+                        }                  
+                    File file = new File(userhome + "\\OpenOcean" + "\\Backup");//add by air
                         if (file.exists()==false) {
                             file.mkdir();
                         }
