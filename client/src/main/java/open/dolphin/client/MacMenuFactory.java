@@ -1036,11 +1036,11 @@ public class MacMenuFactory extends AbstractMenuFactory {
         // 処方箋印刷 createPrescription
         //-------------------
 //s.oh^ 2013/01/24 不要機能の削除
-        JMenuItem createPrescription = new JMenuItem();
-        createPrescription.setName("createPrescription");
-        createPrescription.setAction(actionMap.get("createPrescription"));
-        setAccelerator(createPrescription, KeyEvent.VK_M);
-        karte.add(createPrescription);
+        //JMenuItem createPrescription = new JMenuItem();
+        //createPrescription.setName("createPrescription");
+        //createPrescription.setAction(actionMap.get("createPrescription"));
+        ////setAccelerator(createPrescription, KeyEvent.VK_M);
+        //karte.add(createPrescription);
 //s.oh$
         
         //-------------------
