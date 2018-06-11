@@ -146,6 +146,8 @@ public class Dolphin implements MainWindow {
 
     public void start(String mode) {
         
+        
+ 
 //masuda^         
          // 排他処理用のUUIDを決める
         clientUUID = UUID.randomUUID().toString();
@@ -1635,9 +1637,15 @@ public class Dolphin implements MainWindow {
         String url = ClientContext.getMyBundle(Dolphin.class).getString("url.openDolphin");
         browseURL(url);
     }
+    
+    public void browseOceanSupport() {
+        String url = ClientContext.getMyBundle(Dolphin.class).getString("url.openOcean");
+        browseURL(url);
+    }
+    
 
     /**
-     * ドルフィンプロジェクトをオープンする。
+     * オルカプロジェクトをオープンする。
      */
     public void browseDolphinProject() {
         String url = ClientContext.getMyBundle(Dolphin.class).getString("url.orca");
@@ -1844,7 +1852,7 @@ public class Dolphin implements MainWindow {
                 GUIConst.ACTION_SHOW_SCHEMABOX,
                 GUIConst.ACTION_CHANGE_PASSWORD,
                 GUIConst.ACTION_CONFIRM_RUN,
-                GUIConst.ACTION_BROWS_DOLPHIN,
+                GUIConst.ACTION_BROWS_OCEAN,
                 GUIConst.ACTION_BROWS_DOLPHIN_PROJECT,
                 GUIConst.ACTION_BROWS_MEDXML,
                 GUIConst.ACTION_SHOW_ABOUT,
@@ -1935,11 +1943,28 @@ public class Dolphin implements MainWindow {
         }
     }
 
+    public static int expired(){
+        //試用版ぽく期限を設定する by air
+        //Date expireddate = new Date(1000 * 60 * 60 * 24 * 365 * 50 + 1000 * 60 * 60 * 24 * 270) ;
+        Date expireddate = new Date(2018 - 1900,12-1,31) ;
+        Date datenow = new Date();
+        
+        if(datenow.after(expireddate)) {
+                return 1;
+        }       
+        
+        return 0;
+    }
     /**
      * OpnDolphin entry point.
      * @param args project name
      */
     public static void main(String[] args) {
+ 
+        if (expired()==1){
+            System.exit(0);
+        }
+        
         //Dolphin.getInstance().start(args.length==1 ? args[0] : "i18n");
         Dolphin.getInstance().start(args.length==1 ? args[0] : "dolphin");
         //? 式１:式２は三項演算子。なお、args.length は配列の要素数。
