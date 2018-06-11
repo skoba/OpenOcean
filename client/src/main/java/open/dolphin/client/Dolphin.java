@@ -1945,7 +1945,7 @@ public class Dolphin implements MainWindow {
 
     public static int expired(){
         //試用版ぽく期限を設定する by air
-        //Date expireddate = new Date(1000 * 60 * 60 * 24 * 365 * 50 + 1000 * 60 * 60 * 24 * 270) ;
+        //Date expireddate = new Date(1000 * 60 * 60 * 24 * 365 * 120 ) ;
         Date expireddate = new Date(2018 - 1900,12-1,31) ;
         Date datenow = new Date();
         
