@@ -1943,28 +1943,11 @@ public class Dolphin implements MainWindow {
         }
     }
 
-    public static int expired(){
-        //試用版ぽく期限を設定する by air
-        //Date expireddate = new Date(1000 * 60 * 60 * 24 * 365 * 120 ) ;
-        Date expireddate = new Date(2018 - 1900,12-1,31) ;
-        Date datenow = new Date();
-        
-        if(datenow.after(expireddate)) {
-                return 1;
-        }       
-        
-        return 0;
-    }
     /**
      * OpnDolphin entry point.
      * @param args project name
      */
     public static void main(String[] args) {
- 
-        if (expired()==1){
-            System.exit(0);
-        }
-        
         //Dolphin.getInstance().start(args.length==1 ? args[0] : "i18n");
         Dolphin.getInstance().start(args.length==1 ? args[0] : "dolphin");
         //? 式１:式２は三項演算子。なお、args.length は配列の要素数。
