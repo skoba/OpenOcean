@@ -1,3 +1,7 @@
+# 注意
+
+GPL違反しているソフトウェアの実例として保存しております。
+
 ## OpenDolphin → OpenOcean
   
 OpenOcean は、OpenDolphin 由来のオープンソース電子カルテです。
